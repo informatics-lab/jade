@@ -62,3 +62,18 @@ consul:
   ports:
     - 8500:8500
   command: "-server -bootstrap"
+
+telegraf:
+  restart: always
+  image: telegraf:latest
+  environment:
+    HOST_PROC: /rootfs/proc
+    HOST_SYS: /rootfs/sys
+    HOST_ETC: /rootfs/etc
+  hostname: jade-master-${ENVIRONMENT}
+  volumes:
+   - /usr/local/share/jade/docker/master/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+   - /var/run/docker.sock:/var/run/docker.sock:ro
+   - /sys:/rootfs/sys:ro
+   - /proc:/rootfs/proc:ro
+   - /etc:/rootfs/etc:ro
