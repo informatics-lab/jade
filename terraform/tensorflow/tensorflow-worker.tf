@@ -49,7 +49,7 @@ resource "aws_launch_configuration" "tf-workers" {
     instance_type = "g2.2xlarge"
     key_name = "gateway"
     security_groups = ["default", "${aws_security_group.tfworker.name}"]
-    spot_price = "0.3"
+    spot_price = "0.65"
     user_data = "${data.template_file.tfworker-bootstrap.rendered}"
 
     root_block_device = {
