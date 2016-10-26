@@ -20,11 +20,6 @@ sudo apt-get install -y oracle-java8-installer
 # bazel
 cd /home/ubuntu && wget https://github.com/bazelbuild/bazel/releases/download/0.3.1/bazel_0.3.1-linux-x86_64.deb
 cd /home/ubuntu && sudo su - ubuntu -c "sudo dpkg -i bazel_0.3.1-linux-x86_64.deb"
-# sudo apt-get upgrade bazel # maybe
-
-# cuda
-# wget https://developer.nvidia.com/compute/cuda/8.0/prod/cluster_management/cuda_cluster_pkgs_8.0.44_ubuntu1604-tar.gz
-# sudo tar -xf cuda_cluster_pkgs_8.0.44_ubuntu1604-tar.gz
 
 # build grpc server
 cd /home/ubuntu && sudo git clone --recursive https://github.com/tensorflow/tensorflow
@@ -44,4 +39,4 @@ cd /home/ubuntu/tensorflow && sudo bazel-bin/tensorflow/tools/pip_package/build_
 cd /home/ubuntu/tensorflow && sudo pip install /tmp/tensorflow_pkg/tensorflow-0.11.0rc0-cp27-none-linux_x86_64.whl
 
 # run
-cd /home/ubuntu/tensorflow && sudo bazel-bin/tensorflow/core/distributed_runtime/rpc/grpc_tensorflow_server --cluster_spec='local|localhost:2222' --job_name=local --task_id=0 &
+# cd /home/ubuntu/tensorflow && sudo bazel-bin/tensorflow/core/distributed_runtime/rpc/grpc_tensorflow_server --cluster_spec='local|localhost:2222' --job_name=local --task_id=0 &

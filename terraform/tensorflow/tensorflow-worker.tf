@@ -1,7 +1,7 @@
 variable worker-name {}
 
 data "template_file" "tfworker-bootstrap" {
-    template            = "${file("${path.module}/../../bootstrap/tensorflow.sh")}"
+    template            = "${file("${path.module}/../../bootstrap/tensorflow-gpu.sh")}"
 }
 
 resource "aws_security_group" "tfworker" {
