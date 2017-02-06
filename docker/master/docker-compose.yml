@@ -13,7 +13,7 @@ proxy:
 
 letsencrypt:
   restart: always
-  image: rcs/letsencrypt-nginx-proxy-companion
+  image: jrcs/letsencrypt-nginx-proxy-companion
   volumes:
    - /mnt/jade-notebooks/certs:/etc/nginx/certs:rw
    - /var/run/docker.sock:/var/run/docker.sock:ro
