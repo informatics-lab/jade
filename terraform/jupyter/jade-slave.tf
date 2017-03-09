@@ -30,6 +30,16 @@ resource "aws_security_group_rule" "allow_from_master" {
     source_security_group_id = "${aws_security_group.jademaster.id}"
 }
 
+resource "aws_security_group_rule" "allow_slave_monitoring" {
+    type = "ingress"
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+
+    security_group_id = "sg-11e34c75" # Magic id for persistent monitoring stack
+    source_security_group_id = "${aws_security_group.jadeslave.id}"
+}
+
 resource "aws_launch_configuration" "notebook-slaves" {
     name = "${var.worker-name}"
     image_id = "ami-f9dd458a"

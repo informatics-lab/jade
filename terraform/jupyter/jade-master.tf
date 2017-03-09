@@ -67,6 +67,16 @@ resource "aws_security_group_rule" "allow_from_slave" {
     source_security_group_id = "${aws_security_group.jadeslave.id}"
 }
 
+resource "aws_security_group_rule" "allow_master_monitoring" {
+    type = "ingress"
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+
+    security_group_id = "sg-11e34c75" # Magic id for persistent monitoring stack
+    source_security_group_id = "${aws_security_group.jademaster.id}"
+}
+
 resource "aws_route53_record" "jupyter" {
   zone_id = "Z3USS9SVLB2LY1"
   name = "${var.dns}."

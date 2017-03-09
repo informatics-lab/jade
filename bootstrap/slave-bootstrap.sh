@@ -1,5 +1,6 @@
 #!/bin/bash
 export JUPYTERHUB_HOST="${jademaster_private_ip}"
+export IP_ADDR=$(ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
 
 # install deps
 yum update -y
@@ -37,4 +38,4 @@ aws s3 cp s3://jade-secrets/jade-secrets /usr/local/share/jade/jade-secrets
 docker pull quay.io/informaticslab/asn-serve
 
 # run config
-docker run -d --add-host "jupyterhub:${jademaster_private_ip}" swarm join --advertise=$(ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'):2375 consul://jupyterhub:8500
+/usr/local/bin/docker-compose -f /usr/local/share/jade/docker/slave/docker-compose.yml up -d
